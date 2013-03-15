@@ -39,5 +39,9 @@ Todos.TodosController = Ember.ArrayController.extend({
     completed.invoke('deleteRecord');
 
     this.get('store').commit();
-  }
+  },
+
+  allAreDone: function (key, value) {
+    return !!this.get('length') && this.everyProperty('isCompleted', true);
+  }.property('@each.isCompleted')
 });
