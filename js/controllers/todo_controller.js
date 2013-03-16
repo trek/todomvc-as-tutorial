@@ -5,6 +5,13 @@ Todos.TodoController = Ember.ObjectController.extend({
     this.set('isEditing', true);
   },
 
+  removeTodo: function () {
+    var todo = this.get('model');
+    todo.deleteRecord();
+    
+    this.get('store').commit();
+  },
+
   acceptChanges: function () {
     this.set('isEditing', false);
     this.get('store').commit();
